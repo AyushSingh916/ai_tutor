@@ -1,11 +1,17 @@
-import './Input.css';
+import "./Input.css";
 
-const Input = () => {
-    return (
-        <div>
-            <input type="text" placeholder='User Input is generated here...' className='user-input'/>
-        </div>
-    );
-}
+const Input = ({transcript}) => {
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="User Input is generated here..."
+        value={transcript}
+        className="user-input"
+      />
+    </div>
+  );
+};
 
 export default Input;

@@ -6,5 +6,6 @@
     margin-right: 10px;
     border-radius: 5%;
     border: none;
+    outline: none;
     box-shadow: 0 0 5px rgb(0, 0, 0, 0.5);
 }
