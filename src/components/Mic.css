@@ -6,13 +6,23 @@
     border-radius: 10px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
 
-.Mic p {
+.Mic h2 {
+    margin-left: 5px;
     font-weight: bolder;
 }
 
 .Mic button {
     background-color: #fff;
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    margin: 7px;
+}
+
+.Mic button img {
+    height: 50px;
 }
