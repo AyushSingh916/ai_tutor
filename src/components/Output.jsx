@@ -1,11 +1,14 @@
-import './Output.css';
+import { useState } from "react";
+
+import "./Output.css";
 
 const Output = () => {
-    return (
-        <div>
-            <input type="text" placeholder='Output is generated here...' className='user-output'/>
-        </div>
-    );
-}
+  const [outputing, setOutput] = useState(false);
+  return (
+    <div className="user-output">
+      {!outputing && <p>Output is generated here...</p>}
+    </div>
+  );
+};
 
 export default Output;

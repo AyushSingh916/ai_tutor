@@ -4,8 +4,10 @@
     height: 50vh;
     width: 40vw;
     margin-right: 10px;
-    border-radius: 5%;
+    padding: 10px; /* Added padding for better visual appeal */
+    border-radius: 8px; /* Increased border-radius for smoother edges */
     border: none;
     outline: none;
-    box-shadow: 0 0 5px rgb(0, 0, 0, 0.5);
-}
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adjusted box-shadow */
+  }
+  
