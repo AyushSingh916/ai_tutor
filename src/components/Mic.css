@@ -1,0 +1,18 @@
+.Mic {
+    background-color: purple;
+    position: absolute;
+    bottom: 10px;
+    width: 80vw;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Mic p {
+    font-weight: bolder;
+}
+
+.Mic button {
+    background-color: #fff;
+}

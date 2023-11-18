@@ -1,0 +1,10 @@
+.user-output {
+    background-color: whitesmoke;
+    color: black;
+    height: 50vh;
+    width: 40vw;
+    margin-right: 10px;
+    border-radius: 5%;
+    border: none;
+    box-shadow: 0 0 5px rgb(0, 0, 0, 0.5);
+}
