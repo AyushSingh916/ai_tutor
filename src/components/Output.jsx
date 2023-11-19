@@ -11,13 +11,13 @@ const Output = ({ response }) => {
   };
 
   const handleStop = () => {
-    cancel(); // Stop the speech when the "Stop" button is clicked
+    cancel(); // Stop speaking when the "Stop" button is clicked
   };
 
   return (
     <div className="user-output">
       <p>{response}</p>
-      <button onClick={handleSpeak}>Speak</button>
+      <button onClick={handleSpeak}>Repeat</button>
       <button onClick={handleStop}>Stop</button>
     </div>
   );

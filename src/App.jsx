@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import Input from "./components/Input";
 import Output from "./components/Output";
 import Mic from "./components/Mic";
-import CohereChat from "./Bot/CohereChat";
 import "./App.css";
 
 function App() {
@@ -47,8 +46,8 @@ function App() {
           <Input transcript={transcript} />
           <Output response={response} />
         </div>
-        <Mic Speech={SpeechRecognition} onClick={handleSpeechRecognition} />
-        <button onClick={handleSpeechRecognition}>Send</button>
+        <Mic Speech={SpeechRecognition} handleSpeechRecognition={handleSpeechRecognition} />
+        {/* <button onClick={handleSpeechRecognition}>Send</button> */}
         {console.log(response)}
       </div>
     </>
