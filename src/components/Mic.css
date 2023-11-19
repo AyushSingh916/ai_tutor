@@ -1,13 +1,16 @@
 .Mic {
     background-color: purple;
-    position: absolute;
-    bottom: 10px;
-    width: 80vw;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin: 5px;
 }
 
 .Mic h2 {
