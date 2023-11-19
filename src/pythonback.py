@@ -29,7 +29,7 @@ def get_response():
         return jsonify({'error': 'Message not provided'}), 400
 
     conversation_id = str(uuid.uuid4())
-    conversation_id = "123459876"
+    conversation_id = "1234598766"
 
     response = co.chat(
         message=message,

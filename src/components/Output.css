@@ -17,7 +17,7 @@
 .output-btns {
   display: flex;
   width: 100%; /* Take up the full width of the .user-output container */
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   position: absolute; /* Position the .output-btns container relative to .user-output */
   bottom: 0;
@@ -33,4 +33,6 @@
   color: white;
   font-weight: bold;
   cursor: pointer;
+  height: 2.5rem;
+  width: 5rem;
 }

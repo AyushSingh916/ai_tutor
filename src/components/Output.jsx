@@ -27,7 +27,7 @@ const Output = ({ response }) => {
   return (
     <div className="user-output">
       <p>Bot: {response}</p>
-      <div class='output-btns'>
+      <div className='output-btns'>
         <button onClick={handleSpeak} disabled={isSpeaking}>
           Repeat
         </button>
