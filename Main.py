@@ -1,14 +1,26 @@
 import cohere
 import uuid
 import json
-co = cohere.Client("")
+co = cohere.Client("yuHIisFoPVgscCXCenlwAdtfyhTMb9wbx1ScOiUv")
+
+# from flask import Flask, request
+# app = Flask(__name__)
+
+# @app.route('/receive_data', methods=['POST'])
+# def receive_data():
+#     data = request.json['data']
+#     print(data)
+#     return 'Data received'
+
+# if __name__ == '__main__':
+#     app.run(port=5000)
 
 print("Conversation is starting , please say quit to end the conversation.\n")
 
 conversation_id = str(uuid.uuid4())
 
 while True:
-    message = input("User: ")
+    message = input("You: ")
     if message == "quit":
         print("Conversation ended. ")
         break

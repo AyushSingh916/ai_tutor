@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.6.2",
+    "cohere": "^1.1.1",
+    "cohere-ai": "^7.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-speech-kit": "^3.0.1",
     "react-speech-recognition": "^3.10.0",
-    "regenerator-runtime": "^0.14.0"
+    "regenerator-runtime": "^0.14.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
