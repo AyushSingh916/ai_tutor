@@ -1,0 +1,54 @@
+/* BotsModal.css */
+
+.bots-dialog {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 300px;
+    margin: 10px;
+    background-color: white;
+}
+
+.bots-dialog h2 {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: black;
+    
+}
+
+.bots-dialog p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.bots-dialog img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.bots-dialog button {
+    background-color: #3f8a42;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.bots-dialog .close-button {
+    background-color: #cd1616;
+    color: black;
+    height: 3rem;
+    width: 5rem;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.bots-dialog .close-button:hover {
+    background-color: #930f0f;
+}
