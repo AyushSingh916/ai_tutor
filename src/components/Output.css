@@ -9,18 +9,17 @@
   border: none;
   outline: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-y: auto;
   font-weight: bold;
   position: relative; /* Add position: relative */
 }
 
 .output-btns {
   display: flex;
-  width: 100%; /* Take up the full width of the .user-output container */
   justify-content: space-evenly;
   align-items: center;
-  position: absolute; /* Position the .output-btns container relative to .user-output */
-  bottom: 0;
+  margin-top: auto;
 }
 
 .user-output button {

@@ -29,11 +29,14 @@ def get_response():
         return jsonify({'error': 'Message not provided'}), 400
 
     conversation_id = str(uuid.uuid4())
-    conversation_id = "123459876"
+    conversation_id = "764676"
 
     response = co.chat(
         message=message,
-        preamble_override='''Your preamble here.''',
+        preamble_override='''You are a language learning assistant. Your task is to listen to spoken English and provide corrections
+                        or suggestions for improvement. The user will speak a sentence, and you should respond by correcting any grammatical errors, 
+                        pronunciation issues, or providing feedback on fluency. If the user's spoken English is correct, you can acknowledge that. Keep the feedback 
+                        constructive and encourage the user to try again. Please provide detailed explanations for corrections when necessary.  Keep it concise''',
         stream=True,
         conversation_id=conversation_id,
         return_chat_history=True
