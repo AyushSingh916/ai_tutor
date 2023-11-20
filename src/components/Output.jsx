@@ -3,11 +3,14 @@ import { useSpeechSynthesis } from "react-speech-kit";
 import "./Output.css";
 
 const Output = ({ response }) => {
-  const { speak, cancel } = useSpeechSynthesis();
+  const { speak, cancel, voices } = useSpeechSynthesis();
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [generatedResponse, setGeneratedResponse] = useState("");
   const idx = useRef(0);
   const intervalId = useRef(null);
+  const [selectedVoice, setSelectedVoice] = useState(voices[1]);
+
+  const dummy = "Hi, I'm a dummy response.";
 
   const handleStop = () => {
     cancel();
@@ -26,6 +29,7 @@ const Output = ({ response }) => {
     setIsSpeaking(true);
     speak({
       text: response,
+      voice: selectedVoice,
       onEnd: () => {
         setIsSpeaking(false);
         clearInterval(intervalId.current);
@@ -34,12 +38,14 @@ const Output = ({ response }) => {
 
     intervalId.current = setInterval(() => {
       if (idx.current < response.length) {
-        setGeneratedResponse((prevResponse) => prevResponse + response.charAt(idx.current));
+        setGeneratedResponse(
+          (prevResponse) => prevResponse + response.charAt(idx.current)
+        );
         idx.current++;
       } else {
         clearInterval(intervalId.current);
       }
-    }, 100); // Adjust this value to change the speed of text generation
+    }, 70); // Adjust this value to change the speed of text generation
 
     // Clean up on unmount
     return () => {
@@ -50,9 +56,13 @@ const Output = ({ response }) => {
   }, [response]);
 
   const handleRepeat = () => {
+    if (isSpeaking) {
+      cancel();
+    }
     setIsSpeaking(true);
     speak({
       text: response,
+      voice: selectedVoice,
       onEnd: () => {
         setIsSpeaking(false);
       },
@@ -62,9 +72,22 @@ const Output = ({ response }) => {
   return (
     <div className="user-output">
       <p>Bot: {generatedResponse}</p>
-      <div className='output-btns'>
+      <div className="output-btns">
         <button onClick={handleRepeat}>Repeat</button>
         <button onClick={handleStop}>Stop</button>
+        <select
+          onChange={(e) =>
+            setSelectedVoice(
+              voices.find((voice) => voice.name === e.target.value)
+            )
+          }
+        >
+          {voices.map((voice) => (
+            <option key={voice.name} value={voice.name}>
+              {voice.name}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );

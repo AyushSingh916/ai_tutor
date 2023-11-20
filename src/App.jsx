@@ -48,7 +48,7 @@ function App() {
         </div>
         <Mic Speech={SpeechRecognition} handleSpeechRecognition={handleSpeechRecognition} />
         {/* <button onClick={handleSpeechRecognition}>Send</button> */}
-        {console.log("Hi")}
+        {console.log(response)}
       </div>
     </>
   );
