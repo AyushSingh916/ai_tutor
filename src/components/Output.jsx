@@ -49,10 +49,21 @@ const Output = ({ response }) => {
     };
   }, [response]);
 
+  const handleRepeat = () => {
+    setIsSpeaking(true);
+    speak({
+      text: response,
+      onEnd: () => {
+        setIsSpeaking(false);
+      },
+    });
+  };
+
   return (
     <div className="user-output">
       <p>Bot: {generatedResponse}</p>
       <div className='output-btns'>
+        <button onClick={handleRepeat}>Repeat</button>
         <button onClick={handleStop}>Stop</button>
       </div>
     </div>
