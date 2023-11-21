@@ -3,7 +3,7 @@ import SettingsModal from "./Modals/SettingsModal"; // Import the SettingsModal 
 import BotsModal from "./Modals/BotsModal"; // Import the BotsModal component
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({handleBotChange}) => {
   const [bot, changeBot] = useState("../../public/Bot1.png"); 
   const settingsDialog = useRef();
   const botsDialog = useRef();
@@ -32,6 +32,7 @@ const Navbar = () => {
     } else if (BotNumber == 3) {
       changeBot("../../public/Bot3.png");
     }
+    handleBotChange(BotNumber);
   }
 
   return (

@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
 import "./Output.css";
 
-const Output = ({ response }) => {
+const Output = ({ response, botNum }) => {
   const { speak, cancel, voices } = useSpeechSynthesis();
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [generatedResponse, setGeneratedResponse] = useState("");
   const idx = useRef(0);
   const intervalId = useRef(null);
-  const [selectedVoice, setSelectedVoice] = useState(voices[1]);
+  const [selectedVoice, setSelectedVoice] = useState(voices[8]);
 
   const dummy = "Hi, I'm a dummy response.";
 
@@ -24,6 +24,7 @@ const Output = ({ response }) => {
     // Reset variables
     idx.current = 0;
     setGeneratedResponse("");
+    // setSelectedVoice(voices[botSelected]);
 
     // Start speech and text generation
     setIsSpeaking(true);
@@ -45,7 +46,7 @@ const Output = ({ response }) => {
       } else {
         clearInterval(intervalId.current);
       }
-    }, 70); // Adjust this value to change the speed of text generation
+    }, 70);
 
     // Clean up on unmount
     return () => {
@@ -53,12 +54,19 @@ const Output = ({ response }) => {
       cancel();
       setIsSpeaking(false);
     };
-  }, [response]);
+  }, [response], selectedVoice);
+
+  // console.log(botNum);
+
+  useEffect(() => {
+    setSelectedVoice(voices[botNum - 1]);
+  }, [botNum]);
 
   const handleRepeat = () => {
     if (isSpeaking) {
       cancel();
     }
+    setSelectedVoice(voices[botNum - 1]);
     setIsSpeaking(true);
     speak({
       text: response,
@@ -68,6 +76,8 @@ const Output = ({ response }) => {
       },
     });
   };
+
+  // {console.log(voices)}
 
   return (
     <div className="user-output">

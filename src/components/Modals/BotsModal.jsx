@@ -15,7 +15,7 @@ const BotsModal = forwardRef(({ selectBot }, ref) => {
     <dialog ref={ref} className="bots-dialog">
       <h2>Bots</h2>
       <p>Select a Bot</p>
-      <img src="../../public/Bot1.png" alt="Bot 1" />
+      <img src="../../public/Bot1.png" alt="Bot 1" onClick={handleClick(1)}/>
       <button onClick={handleClick(1)}>Michael</button>
       <img src="../../public/Bot2.png" alt="Bot 2" onClick={handleClick(2)} />
       <button onClick={handleClick(2)}>Alexa</button>
