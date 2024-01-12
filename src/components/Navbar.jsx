@@ -1,12 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
 import SettingsModal from "./Modals/SettingsModal"; // Import the SettingsModal component
 import BotsModal from "./Modals/BotsModal"; // Import the BotsModal component
 import "./Navbar.css";
 
-const Navbar = ({handleBotChange}) => {
-  const [bot, changeBot] = useState("../../public/Bot1.png"); 
+const Navbar = () => {
+  const botNumber = useSelector((state) => state.botNumber);
+
   const settingsDialog = useRef();
   const botsDialog = useRef();
+  console.log(botNumber);
 
   const handleSettingsClick = () => {
     if (settingsDialog.current.hasAttribute("open")) {
@@ -24,26 +27,24 @@ const Navbar = ({handleBotChange}) => {
     }
   };
 
-  const setBot = (BotNumber) => {
-    if (BotNumber == 1) {
-      changeBot("../../public/Bot1.png");
-    } else if (BotNumber == 2) {
-      changeBot("../../public/Bot2.png");
-    } else if (BotNumber == 3) {
-      changeBot("../../public/Bot3.png");
-    }
-    handleBotChange(BotNumber);
-  }
-
   return (
     <div className="nav-bar">
-      <img src="../../public/logo.png" alt="AiTutor Logo" className="nav-logo" />
-      <img src={bot} alt="bot logo" className="nav-bot" onClick={handleBotsClick} />
+      <img
+        src="../../public/logo.png"
+        alt="AiTutor Logo"
+        className="nav-logo"
+      />
+      <img
+        src={`../../public/Bot${botNumber}.png`}
+        alt="bot logo"
+        className="nav-bot"
+        onClick={handleBotsClick}
+      />
       <button className="settings-button" onClick={handleSettingsClick}>
         <img src="../../public/setting.png" className="setting-icon" />
       </button>
       <SettingsModal ref={settingsDialog} />
-      <BotsModal ref={botsDialog} selectBot={setBot}/>
+      <BotsModal ref={botsDialog}/>
     </div>
   );
 };

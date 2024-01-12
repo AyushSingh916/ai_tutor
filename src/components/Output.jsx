@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
 import "./Output.css";
 
-const Output = ({ response, botNum }) => {
+import { useSelector } from "react-redux";
+
+const Output = ({ response}) => {
+  const botNum = useSelector(state => state.botNumber);
   const { speak, cancel, voices } = useSpeechSynthesis();
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [generatedResponse, setGeneratedResponse] = useState("");
@@ -29,7 +32,7 @@ const Output = ({ response, botNum }) => {
     // Start speech and text generation
     setIsSpeaking(true);
     speak({
-      text: response,
+      text: dummy,
       voice: selectedVoice,
       onEnd: () => {
         setIsSpeaking(false);
@@ -69,7 +72,7 @@ const Output = ({ response, botNum }) => {
     setSelectedVoice(voices[botNum - 1]);
     setIsSpeaking(true);
     speak({
-      text: response,
+      text: dummy,
       voice: selectedVoice,
       onEnd: () => {
         setIsSpeaking(false);

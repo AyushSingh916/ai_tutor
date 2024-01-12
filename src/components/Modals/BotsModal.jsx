@@ -1,13 +1,18 @@
 import React, { forwardRef } from "react";
 import "./BotsModal.css"; 
 
-const BotsModal = forwardRef(({ selectBot }, ref) => {
+import { useDispatch } from "react-redux";
+import { botActions } from "../../store/BotSlice";
+
+const BotsModal = forwardRef((props, ref) => {
+  const dispath = useDispatch();
+
   const handleClose = () => {
     ref.current.close();
   };
 
   const handleClick = (BotNumber) => () => {
-    selectBot(BotNumber);
+    dispath(botActions.change(BotNumber));
     handleClose();
   };
 
