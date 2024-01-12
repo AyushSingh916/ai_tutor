@@ -6,7 +6,16 @@ import Navbar from "./components/Navbar";
 import Input from "./components/Input";
 import Output from "./components/Output";
 import Mic from "./components/Mic";
+import Login from "./login/Login";
 import "./App.css";
+
+import { onAuthStateChanged } from "firebase/auth";
+import {
+  collection,
+  getDocs,
+  addDoc,
+} from "firebase/firestore";
+import { db, auth } from "./config/firebase";
 
 function App() {
   const {
@@ -18,6 +27,23 @@ function App() {
 
   const [response, setResponse] = useState("");
   const [bot, setBot] = useState(1);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        // User is signed in.
+        setUser(authUser);
+        localStorage.setItem("user", authUser.uid);
+      } else {
+        // No user is signed in.
+        setUser(null);
+      }
+    });
+
+    // Clean up the subscription when the component unmounts.
+    return () => unsubscribe();
+  }, []);
 
   const handleSpeechRecognition = async () => {
     // Send the transcript to your server (Cohere) and get the response
@@ -41,32 +67,24 @@ function App() {
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
-  const handleBotsClick = (bot) => {
-    console.log(bot);
-    if (bot == 1) {
-      setBot(9);
-    } else if (bot == 2) {
-      setBot(8);
-    } else {
-      setBot(bot);
-    }
-  };
+  console.log(transcript);
 
   return (
     <>
-      <div className="app">
-        <Navbar handleBotChange={handleBotsClick} />
-        <div className="InputOutput">
-          <Input transcript={transcript} />
-          <Output response={response} botNum={bot} />
+      {!user && <Login />}
+      {user && (
+        <div className="app">
+          <Navbar />
+          <div className="InputOutput">
+            <Input transcript={transcript} />
+            <Output response={response} />
+          </div>
+          <Mic
+            Speech={SpeechRecognition}
+            handleSpeechRecognition={handleSpeechRecognition}
+          />
         </div>
-        <Mic
-          Speech={SpeechRecognition}
-          handleSpeechRecognition={handleSpeechRecognition}
-        />
-        {/* <button onClick={handleSpeechRecognition}>Send</button> */}
-        {/* {console.log(response)} */}
-      </div>
+      )}
     </>
   );
 }

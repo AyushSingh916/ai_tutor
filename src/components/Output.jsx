@@ -32,7 +32,7 @@ const Output = ({ response}) => {
     // Start speech and text generation
     setIsSpeaking(true);
     speak({
-      text: dummy,
+      text: response,
       voice: selectedVoice,
       onEnd: () => {
         setIsSpeaking(false);
@@ -40,16 +40,18 @@ const Output = ({ response}) => {
       },
     });
 
-    intervalId.current = setInterval(() => {
-      if (idx.current < response.length) {
-        setGeneratedResponse(
-          (prevResponse) => prevResponse + response.charAt(idx.current)
-        );
-        idx.current++;
-      } else {
-        clearInterval(intervalId.current);
-      }
-    }, 70);
+    if (response !== '' || response != null) {
+      intervalId.current = setInterval(() => {
+        if (idx.current < response.length) {
+          setGeneratedResponse(
+            (prevResponse) => prevResponse + response.charAt(idx.current)
+          );
+          idx.current++;
+        } else {
+          clearInterval(intervalId.current);
+        }
+      }, 70);
+    }
 
     // Clean up on unmount
     return () => {
@@ -57,12 +59,21 @@ const Output = ({ response}) => {
       cancel();
       setIsSpeaking(false);
     };
-  }, [response], selectedVoice);
+  }, [response]);
 
   // console.log(botNum);
 
   useEffect(() => {
-    setSelectedVoice(voices[botNum - 1]);
+    function setBotVoice(botNum) {
+      if (botNum == 1) {
+        setSelectedVoice(voices[0]);
+      }if (botNum == 2) {
+        setSelectedVoice(voices[7]);
+      }if (botNum == 3) {
+        setSelectedVoice(voices[2]);
+      }
+    }
+    setBotVoice(botNum);
   }, [botNum]);
 
   const handleRepeat = () => {
@@ -72,15 +83,13 @@ const Output = ({ response}) => {
     setSelectedVoice(voices[botNum - 1]);
     setIsSpeaking(true);
     speak({
-      text: dummy,
+      text: response,
       voice: selectedVoice,
       onEnd: () => {
         setIsSpeaking(false);
       },
     });
   };
-
-  // {console.log(voices)}
 
   return (
     <div className="user-output">
