@@ -1,16 +1,39 @@
 .user-input {
-    background-color: whitesmoke;
-    color: black;
-    height: 50vh;
-    width: 40vw;
-    margin-left: 10px;
-    padding: 10px; /* Added padding for better visual appeal */
-    border-radius: 8px; /* Increased border-radius for smoother edges */
-    border: none;
-    outline: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adjusted box-shadow */
-    font-weight: bold; /* Make the text bold */
-    vertical-align: top; /* Align text to the top */
-    line-height: 1; /* Set line-height to 1 for top alignment */
-  }
-  
+  background-color: whitesmoke;
+  color: black;
+  height: 50vh;
+  width: 40vw;
+  margin-left: 10px;
+  padding: 10px; /* Added padding for better visual appeal */
+  border-radius: 8px; /* Increased border-radius for smoother edges */
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adjusted box-shadow */
+  font-weight: bold; /* Make the text bold */
+  vertical-align: top; /* Align text to the top */
+  line-height: 1; /* Set line-height to 1 for top alignment */
+}
+
+.user-input input {
+  background-color: aliceblue;
+  color: black;
+  width: 90%;
+  border-radius: 3px;
+  border: hidden;
+  /* overflow-y:scroll; */
+  height: 15%;
+}
+
+.input-button {
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background-color: #3f8a42;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 5rem;
+}

@@ -11,7 +11,7 @@ const Output = ({ response}) => {
   const [generatedResponse, setGeneratedResponse] = useState("");
   const idx = useRef(0);
   const intervalId = useRef(null);
-  const [selectedVoice, setSelectedVoice] = useState(voices[8]);
+  const [selectedVoice, setSelectedVoice] = useState(voices[3]);
 
   const dummy = "Hi, I'm a dummy response.";
 
@@ -23,24 +23,24 @@ const Output = ({ response}) => {
   useEffect(() => {
     // Clear any existing interval when the component re-renders
     clearInterval(intervalId.current);
-
+  
     // Reset variables
     idx.current = 0;
     setGeneratedResponse("");
-    // setSelectedVoice(voices[botSelected]);
-
-    // Start speech and text generation
-    setIsSpeaking(true);
-    speak({
-      text: response,
-      voice: selectedVoice,
-      onEnd: () => {
-        setIsSpeaking(false);
-        clearInterval(intervalId.current);
-      },
-    });
-
-    if (response !== '' || response != null) {
+  
+    // Check if response is not empty
+    if (response && response.length > 0) {
+      // Start speech and text generation
+      setIsSpeaking(true);
+      speak({
+        text: response,
+        voice: selectedVoice,
+        onEnd: () => {
+          setIsSpeaking(false);
+          clearInterval(intervalId.current);
+        },
+      });
+  
       intervalId.current = setInterval(() => {
         if (idx.current < response.length) {
           setGeneratedResponse(
@@ -51,8 +51,12 @@ const Output = ({ response}) => {
           clearInterval(intervalId.current);
         }
       }, 70);
+    } else {
+      // Response is empty, reset speech synthesis state
+      cancel();
+      setIsSpeaking(false);
     }
-
+  
     // Clean up on unmount
     return () => {
       clearInterval(intervalId.current);
@@ -60,17 +64,18 @@ const Output = ({ response}) => {
       setIsSpeaking(false);
     };
   }, [response]);
+  
 
-  // console.log(botNum);
+  // console.log(voices);
 
   useEffect(() => {
     function setBotVoice(botNum) {
       if (botNum == 1) {
-        setSelectedVoice(voices[0]);
+        setSelectedVoice(voices[3]);
       }if (botNum == 2) {
-        setSelectedVoice(voices[7]);
-      }if (botNum == 3) {
         setSelectedVoice(voices[2]);
+      }if (botNum == 3) {
+        setSelectedVoice(voices[7]);
       }
     }
     setBotVoice(botNum);
@@ -96,7 +101,7 @@ const Output = ({ response}) => {
       <p>Bot: {generatedResponse}</p>
       <div className="output-btns">
         <button onClick={handleRepeat}>Repeat</button>
-        <button onClick={handleStop}>Stop</button>
+        <button onClick={handleStop}>Mute</button>
         <select
           onChange={(e) =>
             setSelectedVoice(

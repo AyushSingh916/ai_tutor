@@ -10,11 +10,7 @@ import Login from "./login/Login";
 import "./App.css";
 
 import { onAuthStateChanged } from "firebase/auth";
-import {
-  collection,
-  getDocs,
-  addDoc,
-} from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db, auth } from "./config/firebase";
 
 function App() {
@@ -45,7 +41,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  const handleSpeechRecognition = async () => {
+  const handleSpeechRecognition = async (inputValue) => {
     // Send the transcript to your server (Cohere) and get the response
     try {
       const serverResponse = await fetch("http://localhost:5000/get_response", {
@@ -53,7 +49,7 @@ function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: transcript }),
+        body: JSON.stringify({ message: inputValue }),
       });
 
       const responseData = await serverResponse.json();
@@ -61,6 +57,11 @@ function App() {
     } catch (error) {
       console.error("Error fetching response from server:", error);
     }
+  };
+
+  const handleSubmit = (inputValue) => {
+    // Call handleSpeechRecognition function with input value
+    handleSpeechRecognition(inputValue);
   };
 
   if (!browserSupportsSpeechRecognition) {
@@ -76,7 +77,7 @@ function App() {
         <div className="app">
           <Navbar />
           <div className="InputOutput">
-            <Input transcript={transcript} />
+            <Input transcript={transcript} handleSubmit={handleSubmit} />
             <Output response={response} />
           </div>
           <Mic
