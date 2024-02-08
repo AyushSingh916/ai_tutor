@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
+    flex-direction: column;
 }
 
 #login-outer-card {
@@ -57,3 +58,6 @@
     outline: none;
   }
   
+.header-text {
+  padding: 1rem;
+}

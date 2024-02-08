@@ -24,8 +24,8 @@ const SettingsModal = forwardRef((props, ref) => {
         <h2>Settings</h2>
         <button onClick={handleClick}>Close</button>
       </div>
-      <div className="funct">
-        <button onClick={handleLogout}>Logout</button>
+      <div className="logout-btn-container">
+        <button onClick={handleLogout} className="logout-btn">Logout</button>
       </div>
     </dialog>
   );

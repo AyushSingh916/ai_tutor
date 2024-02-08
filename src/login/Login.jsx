@@ -40,6 +40,7 @@ const Login = () => {
 
   return (
     <div className="card">
+      <h1 className="header-text">Login or Sign Up</h1>
       <div id="login-outer-card">
         <div className="login">
           <input

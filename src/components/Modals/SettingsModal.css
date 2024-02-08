@@ -12,3 +12,13 @@
   align-items: flex-start;
   
 }
+
+.logout-btn-container {
+  position: absolute;
+  bottom: 0;
+  padding: 1rem;
+}
+
+.logout-btn {
+  background-color: rgb(139, 29, 29);
+}
