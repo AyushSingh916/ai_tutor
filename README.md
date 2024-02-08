@@ -1,8 +1,13 @@
-# React + Vite
+You have to run two servers simultaneously a NodeJs and flask server.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Use "npm run dev" to run the NodeJs server in the root directory.
 
-Currently, two official plugins are available:
+Use "python pythonback.py" in the src directory to run the flask server.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+This is a Project about Speech to Text and Text to Speech and implemented using ReactJs and NodeJs  ![Screenshot from 2024-02-05 19-51-05](https://github.com/AyushSingh916/ai_tutor/assets/133966255/69f3f7a2-e4fa-4c56-aa49-f2d3587df9ef).
+It is about mental health concelling, it works as a therapist asking user question which they can answer using speech.
+I have a flask server running in the background which uses a cohere API, which does NLP.
+
+There are 3 bot options to choose.
+![Screenshot from 2024-02-05 19-51-22](https://github.com/AyushSingh916/ai_tutor/assets/133966255/fd941fe0-101e-4e8d-b562-610216b6be30)
