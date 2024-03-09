@@ -41,15 +41,16 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  const handleSpeechRecognition = async (inputValue) => {
+  const handleSpeechRecognition = async (query) => {
     // Send the transcript to your server (Cohere) and get the response
+
     try {
       const serverResponse = await fetch("http://localhost:5000/get_response", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: inputValue }),
+        body: JSON.stringify({ message: (query === undefined) ? transcript : query }),
       });
 
       const responseData = await serverResponse.json();
@@ -67,8 +68,6 @@ function App() {
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
-
-  console.log(transcript);
 
   return (
     <>

@@ -44,7 +44,9 @@ def get_response():
         if event.event_type == "text-generation":
             tutor_response += event.text
 
-    return jsonify({'response': tutor_response, 'conversation_id': conversation_id})
+    response =  jsonify({'response': tutor_response, 'conversation_id': conversation_id})
+    # print(response)
+    return response
 
 if __name__ == '__main__':
     app.run(port=5000)

@@ -20,7 +20,7 @@ const Mic = ({ Speech, handleSpeechRecognition }) => {
       {!micOn && <h2>Start Speaking</h2>}
       {micOn && <h2>Stop Speaking</h2>}
       <button onClick={handleClick}>
-        <img src="../../public/mic.png" alt="Microphone" />
+        <img src="src\assets\mic.png" alt="Microphone" />
       </button>
     </div>
   );

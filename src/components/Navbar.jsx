@@ -9,7 +9,6 @@ const Navbar = () => {
 
   const settingsDialog = useRef();
   const botsDialog = useRef();
-  console.log(botNumber);
 
   const handleSettingsClick = () => {
     if (settingsDialog.current.hasAttribute("open")) {
@@ -30,18 +29,18 @@ const Navbar = () => {
   return (
     <div className="nav-bar">
       <img
-        src="../../public/logo.png"
+        src="src\assets\logo.png"
         alt="AiTutor Logo"
         className="nav-logo"
       />
       <img
-        src={`../../public/Bot${botNumber}.png`}
+        src={`src/assets/Bot${botNumber}.png`}
         alt="bot logo"
         className="nav-bot"
         onClick={handleBotsClick}
       />
       <button className="settings-button" onClick={handleSettingsClick}>
-        <img src="../../public/setting.png" className="setting-icon" />
+        <img src="src\assets\setting.png" className="setting-icon" />
       </button>
       <SettingsModal ref={settingsDialog} />
       <BotsModal ref={botsDialog}/>
