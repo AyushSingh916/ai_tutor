@@ -13,9 +13,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { db, auth } from "./config/firebase";
 import Groq from "groq-sdk";
 
-// Initialize Groq with API Key
+// Initialize Groq with API Key from environment variable
 const groq = new Groq({
-  apiKey: "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",
+  apiKey: process.env.REACT_APP_GROQ_API_KEY, // Use environment variable
   dangerouslyAllowBrowser: true,
 });
 
