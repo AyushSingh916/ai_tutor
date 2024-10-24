@@ -5,9 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "npm run dev-vite",
-    "start-flask": "python src/pythonback.py",
     "dev-vite": "vite",
-    "build": "vite build",
+    "build": "vite build --force",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
