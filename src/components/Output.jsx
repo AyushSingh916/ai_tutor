@@ -102,19 +102,6 @@ const Output = ({ response}) => {
       <div className="output-btns">
         <button onClick={handleRepeat}>Repeat</button>
         <button onClick={handleStop}>Mute</button>
-        <select
-          onChange={(e) =>
-            setSelectedVoice(
-              voices.find((voice) => voice.name === e.target.value)
-            )
-          }
-        >
-          {voices.map((voice) => (
-            <option key={voice.name} value={voice.name}>
-              {voice.name}
-            </option>
-          ))}
-        </select>
       </div>
     </div>
   );
