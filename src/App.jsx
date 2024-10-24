@@ -15,7 +15,7 @@ import Groq from "groq-sdk";
 
 // Initialize Groq with API Key from environment variable
 const groq = new Groq({
-  apiKey: process.env.REACT_APP_GROQ_API_KEY, // Use environment variable
+  apiKey: import.meta.env.VITE_GROQ_API_KEY, // Use Vite's environment variable
   dangerouslyAllowBrowser: true,
 });
 
