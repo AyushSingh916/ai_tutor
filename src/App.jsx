@@ -10,8 +10,14 @@ import Login from "./login/Login";
 import "./App.css";
 
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db, auth } from "./config/firebase";
+import Groq from "groq-sdk";
+
+// Initialize Groq with API Key
+const groq = new Groq({
+  apiKey: "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",
+  dangerouslyAllowBrowser: true,
+});
 
 function App() {
   const {
@@ -42,22 +48,27 @@ function App() {
   }, []);
 
   const handleSpeechRecognition = async (query) => {
-    // Send the transcript to your server (Cohere) and get the response
-
+    // Use Groq SDK to get a response for the transcript or query
     try {
-      const serverResponse = await fetch("http://localhost:5000/get_response", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: (query === undefined) ? transcript : query }),
-      });
-
-      const responseData = await serverResponse.json();
-      setResponse(responseData.response);
+      const chatCompletion = await getGroqChatCompletion(query || transcript);
+      const messageContent = chatCompletion.choices[0]?.message?.content || "";
+      setResponse(messageContent);
     } catch (error) {
-      console.error("Error fetching response from server:", error);
+      console.error("Error fetching response from Groq:", error);
     }
+  };
+
+  // Function to get Groq chat completion
+  const getGroqChatCompletion = async (message) => {
+    return groq.chat.completions.create({
+      messages: [
+        {
+          role: "user",
+          content: message,
+        },
+      ],
+      model: "llama3-8b-8192", // Use appropriate model
+    });
   };
 
   const handleSubmit = (inputValue) => {
